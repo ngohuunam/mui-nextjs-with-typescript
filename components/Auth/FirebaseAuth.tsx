@@ -1,11 +1,10 @@
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { storeUserToFirestore } from '../../provider/auth/store-user-to-firestore';
-import { useRouter } from 'next/router';
+// import { storeUserToFirestore } from '../../provider/auth/store-user-to-firestore';
+// import { useRouter } from 'next/router';
 import { firebase } from '../../provider/firebase/firebase-client';
 
-
 const FirebaseAuth = ({ fpc }: { fpc: typeof firebase }) => {
-  const router = useRouter();
+  // const router = useRouter();
 
   const firebaseAuthConfig = {
     // signInFlow: "popup",
@@ -27,21 +26,21 @@ const FirebaseAuth = ({ fpc }: { fpc: typeof firebase }) => {
         whitelistedCountries: ['VI', '+84'],
       },
     ],
-    // signInSuccessUrl: "/",
+    signInSuccessUrl: '/',
     credentialHelper: 'none',
-    callbacks: {
-      signInSuccessWithAuthResult: ({ user }: { user: firebase.User }) => {
-        storeUserToFirestore(user).then(() => router.push('/profile'));
-        return false;
-      },
-    },
+    // callbacks: {
+    //   signInSuccessWithAuthResult: ({ user }: { user: firebase.User }) => {
+    //     storeUserToFirestore(user).then(() => router.push('/profile'));
+    //     return false;
+    //   },
+    // },
   };
   const fbAuth = fpc.auth();
 
   return (
-    <div>
+    <>
       <StyledFirebaseAuth uiConfig={firebaseAuthConfig} firebaseAuth={fbAuth} />
-    </div>
+    </>
   );
 };
 

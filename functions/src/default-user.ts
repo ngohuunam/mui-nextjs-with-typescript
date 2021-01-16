@@ -1,4 +1,4 @@
-export interface defaultUser {
+export interface defaultUserITF {
   name: string | undefined | null;
   displayName: string | undefined | null;
   email: string | undefined | null;
@@ -18,9 +18,11 @@ export interface defaultUser {
   bienSo: string | undefined | null;
   xeTret: boolean;
   vanTay: string | undefined | null;
+  createdAt: number;
+  lastEdit: number;
 }
 
-export const defaultUser: defaultUser = {
+export const defaultUser: defaultUserITF = {
   name: '',
   displayName: '',
   email: '',
@@ -40,4 +42,6 @@ export const defaultUser: defaultUser = {
   bienSo: '',
   xeTret: false,
   vanTay: '',
+  createdAt: 0,
+  lastEdit: 0,
 };
