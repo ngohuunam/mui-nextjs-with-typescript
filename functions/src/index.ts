@@ -14,14 +14,32 @@ admin.initializeApp();
 //   response.send("Hello from Firebase!");
 // });
 
+export const newUserToFS = functions
+  .region('asia-east2')
+  .auth.user()
+  .onCreate((user) => {
+    const { providerData, email, emailVerified, phoneNumber } = user;
+    const providerDataToJson = JSON.parse(JSON.stringify(providerData[0]));
+    const data = { ...defaultUser, ...{ emailVerified }, ...providerDataToJson };
+    data.createdAt = admin.firestore.Timestamp.now().toMillis();
+    console.log(data);
+    return admin
+      .firestore()
+      .collection('users') // @ts-ignore
+      .doc(email || phoneNumber)
+      .set(data)
+      .catch((e) => console.error(e));
+  });
 
-export const createFirestoreUser = functions.auth.user().onCreate((user) => {
-  const { providerData, email, emailVerified, phoneNumber } = user;
-  const data = { ...defaultUser, ...{ emailVerified }, ...providerData[0] };
-  data.createdAt = admin.firestore.Timestamp.now().toMillis();
-  return admin
-    .firestore()
-    .collection('users') // @ts-ignore
-    .doc(email || phoneNumber)
-    .set(data);
-});
+export const removeUserToFS = functions
+  .region('asia-east2')
+  .auth.user()
+  .onDelete((user) => {
+    const { email, phoneNumber } = user;
+    return admin
+      .firestore()
+      .collection('users') // @ts-ignore
+      .doc(email || phoneNumber)
+      .delete()
+      .catch((e) => console.error(e));
+  });

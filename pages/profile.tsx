@@ -8,12 +8,12 @@ import Copyright from '../src/Copyright';
 
 export default function About() {
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
+    <Container maxWidth='sm'>
+      <Box>
+        <Typography variant='h4' component='h1' gutterBottom>
           PROFILE
         </Typography>
-        <Link href="/">Go to the main page</Link>
+        <Link href='/'>Go to the main page</Link>
         <ProTip />
         <Copyright />
       </Box>

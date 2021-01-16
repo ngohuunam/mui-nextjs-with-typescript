@@ -16,7 +16,7 @@ export default function Register() {
 
   return (
     <Container maxWidth='sm'>
-      <Box sx={{ py: 4 }}>
+      <Box>
         {isFirebaseClientReady ? <FirebaseAuth fpc={firebaseClient} /> : <CircularProgress />}
         <ProTip />
         <Copyright />

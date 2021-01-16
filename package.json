@@ -3,20 +3,20 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@emotion/cache": "latest",
-    "@emotion/react": "latest",
-    "@emotion/server": "latest",
-    "@emotion/styled": "latest",
-    "@material-ui/core": "next",
-    "@material-ui/icons": "next",
-    "clsx": "latest",
+    "@emotion/cache": "^11.1.3",
+    "@emotion/react": "^11.1.4",
+    "@emotion/server": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
+    "clsx": "^1.1.1",
     "firebase": "^8.2.3",
     "firebase-admin": "^9.4.2",
-    "next": "latest",
-    "nookies": "^2.5.0",
-    "react": "latest",
+    "next": "^10.0.5",
+    "nookies": "^2.5.1",
+    "react": "^17.0.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
-    "react-dom": "latest",
+    "react-dom": "^17.0.1",
     "react-firebaseui": "^4.1.0",
     "react-scrollspy": "^3.4.3"
   },
@@ -24,15 +24,15 @@
     "dev": "next dev -p 3010",
     "build": "next build",
     "start": "next start",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --1"
   },
   "devDependencies": {
-    "@babel/core": "latest",
-    "@emotion/babel-plugin": "latest",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
+    "@babel/core": "^7.12.10",
+    "@emotion/babel-plugin": "^11.1.2",
+    "@types/node": "^14.14.21",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "@types/react-scrollspy": "^3.3.3",
-    "typescript": "latest"
+    "typescript": "^4.1.3"
   }
 }

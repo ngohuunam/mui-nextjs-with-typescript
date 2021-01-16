@@ -26,7 +26,7 @@ const FirebaseAuth = ({ fpc }: { fpc: typeof firebase }) => {
         whitelistedCountries: ['VI', '+84'],
       },
     ],
-    signInSuccessUrl: '/',
+    signInSuccessUrl: '/profile',
     credentialHelper: 'none',
     // callbacks: {
     //   signInSuccessWithAuthResult: ({ user }: { user: firebase.User }) => {
