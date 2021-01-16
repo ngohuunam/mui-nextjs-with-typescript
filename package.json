@@ -1,0 +1,38 @@
+{
+  "name": "nextjs-with-typescript",
+  "version": "5.0.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/cache": "latest",
+    "@emotion/react": "latest",
+    "@emotion/server": "latest",
+    "@emotion/styled": "latest",
+    "@material-ui/core": "next",
+    "@material-ui/icons": "next",
+    "clsx": "latest",
+    "firebase": "^8.2.3",
+    "firebase-admin": "^9.4.2",
+    "next": "latest",
+    "nookies": "^2.5.0",
+    "react": "latest",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
+    "react-dom": "latest",
+    "react-firebaseui": "^4.1.0",
+    "react-scrollspy": "^3.4.3"
+  },
+  "scripts": {
+    "dev": "next dev -p 3010",
+    "build": "next build",
+    "start": "next start",
+    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+  },
+  "devDependencies": {
+    "@babel/core": "latest",
+    "@emotion/babel-plugin": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/react-scrollspy": "^3.3.3",
+    "typescript": "latest"
+  }
+}
