@@ -13,7 +13,7 @@ import useStyles from './header-style';
 import navMenu from './menu';
 import Link from '../../src/Link';
 import { useAuth } from '../../provider/auth/auth-provider-hook';
-import Avatar from '@material-ui/core/Avatar';
+// import Avatar from '@material-ui/core/Avatar';
 
 let counter = 0;
 function createData(name: string, url: string) {
@@ -89,19 +89,7 @@ function Header() {
               )}
             </nav>
             <nav className={classes.userMenu}>
-              {isDesktop && <Button href='#'>Login</Button>}
-              {user ? (
-                // @ts-ignore
-                <Button variant='contained' color='secondary' startIcon={<Avatar src={user.photoURL} />} href='/register'>
-                  Registered
-                </Button>
-              ) : (
-                <Button variant='contained' color='primary' href='/register'>
-                  Register
-                </Button>
-              )}
-              {isDesktop && <span className={classes.vDivider} />}
-              <Settings />
+              {user ? <Settings /> : <Link href='/login'><Button variant='contained' color='primary'> Login </Button></Link>}
             </nav>
           </div>
         </Container>

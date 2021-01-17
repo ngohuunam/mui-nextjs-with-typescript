@@ -1,6 +1,10 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
-const headerStyles = makeStyles((theme) => ({
+const headerStyles = makeStyles((theme: Theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
   '@keyframes slideRight': {
     from: {
       opacity: 0,

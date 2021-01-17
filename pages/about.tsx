@@ -11,9 +11,11 @@ export default function About() {
     <Container maxWidth="sm">
       <Box>
         <Typography variant="h4" component="h1" gutterBottom>
-          Next.js v5-alpha with TypeScript example
+          About page
         </Typography>
         <Link href="/">Go to the main page</Link>
+        <Link href="/profile">Go to the Profile page</Link>
+        <Link href="/login">Go to the Login page</Link>
         <ProTip />
         <Copyright />
       </Box>

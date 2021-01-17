@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box';
 import ProTip from '../src/ProTip';
 import Copyright from '../src/Copyright';
 
-export default function Register() {
+export default function Login() {
   const { firebaseClient } = useAuth();
   const [isFirebaseClientReady, setIsFirebaseClientReady] = useState(false);
 

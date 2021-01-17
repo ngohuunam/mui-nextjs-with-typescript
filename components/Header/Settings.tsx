@@ -2,24 +2,25 @@ import React, { useState, useEffect, MouseEvent } from 'react';
 import clsx from 'clsx';
 import Popover from '@material-ui/core/Popover';
 import IconButton from '@material-ui/core/IconButton';
-import SettingsIcon from '@material-ui/icons/Settings';
 import List from '@material-ui/core/List';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import useStyles from './header-style';
-
-let themeType = 'light';
-if (typeof Storage !== 'undefined') {
-  themeType = localStorage.getItem('luxiTheme') || 'light';
-}
+import { useAuth } from '../../provider/auth/auth-provider-hook';
+import Avatar from '@material-ui/core/Avatar';
+import { useRouter } from "next/router";
+import Link from '../../src/Link';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function Settings() {
+  const { user, firebaseClient } = useAuth();
+  const router = useRouter();
   const [ctn, setCtn] = useState<HTMLElement | null>(null);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const [backdropOpen, setbackdropOpen] = React.useState(false);
 
   function handleClick(event: MouseEvent) {
     setAnchorEl(event.currentTarget as any);
@@ -33,12 +34,33 @@ function Settings() {
     setCtn(document.getElementById('main-wrap'));
   });
 
+  const logout = () => {
+    setAnchorEl(null);
+    setbackdropOpen(true)
+    firebaseClient.auth().signOut().then(() => router.push("/")).catch(e => alert(e.message))
+  };
+
+  const deleteUser = () => {
+    setAnchorEl(null);
+    setbackdropOpen(true)
+    fetch(`${location.origin}/api/user/delete/${user?.uid}`, { method: 'delete' }).then(res => {
+      console.log(res.status)
+      if (res.status === 200) { logout() }
+      else { res.json().then(json => alert(json.mess)) }
+    })
+  };
+
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
   return (
     <div className={classes.setting}>
+      <Backdrop className={classes.backdrop} style={{ zIndex: 2000 }} open={backdropOpen} onClick={() => setbackdropOpen(false)}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <IconButton aria-describedby={id} aria-label='Settings' onClick={handleClick} className={clsx(classes.icon, open ? classes.active : '')}>
-        <SettingsIcon fontSize='inherit' />
+        {/*
+        // @ts-ignore */}
+        <Avatar src={user?.photoURL} />
       </IconButton>
       <Popover
         id={id}
@@ -54,19 +76,20 @@ function Settings() {
           vertical: 'top',
           horizontal: 'center',
         }}>
-        <List component='nav' className={classes.modeMenu} aria-label='Mode-menu' subheader={<ListSubheader component='div'>Theme Mode</ListSubheader>}>
-          <ListItem>
-            <Typography component='div'>
-              <Grid component='label' container alignItems='center' spacing={1}>
-                <Grid item>Light</Grid>
-                <Grid item>Dark</Grid>
-              </Grid>
-            </Typography>
+        <List component='nav' className={classes.modeMenu} aria-label='Mode-menu'>
+          <ListItem component={Link} href="/profile">
+            <ListItemText primary="Profile" />
+          </ListItem>
+          <ListItem button onClick={logout}>
+            <ListItemText primary="Logout" />
+          </ListItem>
+          <ListItem button onClick={deleteUser}>
+            <ListItemText primary="Delete" />
           </ListItem>
         </List>
         <Divider />
       </Popover>
-    </div>
+    </div >
   );
 }
 

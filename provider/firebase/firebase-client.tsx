@@ -35,4 +35,4 @@ const initFirebase = () => {
 
 const firebaseClient = initFirebase();
 
-export { initFirebase, firebaseClient, firebase };
+export { firebaseClient };
