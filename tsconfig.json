@@ -20,7 +20,10 @@
     "resolveJsonModule": true,
     "types": ["@emotion/react/types/css-prop"],
     "typeRoots": [ "./types", "./node_modules/@types"],
-    "isolatedModules": true
+    "isolatedModules": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true
   },
   "exclude": ["node_modules", "typings"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
