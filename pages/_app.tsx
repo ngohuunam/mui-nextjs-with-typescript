@@ -7,7 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import createCache from '@emotion/cache';
 import theme from '../src/theme';
 import '../vendors/hamburger-menu.css';
-import Layout from "../components/layout";
+// import Layout from "../components/layout";
 import { AuthProvider } from "../provider/auth/auth-provider-hook";
 
 export const cache = createCache({ key: 'css', prepend: true });
@@ -32,9 +32,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <AuthProvider>
-          <Layout>
+          {/* <Layout> */}
             <Component {...pageProps} />
-          </Layout>
+          {/* </Layout> */}
         </AuthProvider>
       </ThemeProvider>
     </CacheProvider>

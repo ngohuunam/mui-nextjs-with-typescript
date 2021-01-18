@@ -5,8 +5,8 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from '@material-ui/core/Box';
-import ProTip from '../src/ProTip';
 import Copyright from '../src/Copyright';
+import Link from '../src/Link';
 
 export default function Login() {
   const { firebaseClient } = useAuth();
@@ -18,7 +18,7 @@ export default function Login() {
     <Container maxWidth='sm'>
       <Box>
         {isFirebaseClientReady ? <FirebaseAuth fpc={firebaseClient} /> : <CircularProgress />}
-        <ProTip />
+        <Link href="/">Go to the main page</Link>
         <Copyright />
       </Box>
     </Container>
