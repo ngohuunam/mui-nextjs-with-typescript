@@ -85,8 +85,6 @@ export default function Orders() {
           ))}
         </TableBody>
       </Table>
-      {/*
-      // @ts-ignore */}
       <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
         See more orders
       </Link>

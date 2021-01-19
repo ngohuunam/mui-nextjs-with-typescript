@@ -14,7 +14,6 @@ import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -22,19 +21,8 @@ import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
-
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Copyright from '../../src/Copyright';
+import Settings from '../Header/Settings';
 
 const drawerWidth = 240;
 
@@ -101,7 +89,7 @@ export default function Dashboard() {
     setOpen(!open);
   };
 
-  return (// @ts-ignore
+  return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
@@ -118,9 +106,13 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
-          {/*
-           // @ts-ignore */}
-          <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            sx={{ flexGrow: 1 }}
+          >
             Dashboard
           </Typography>
           <IconButton color="inherit">
@@ -128,6 +120,7 @@ export default function Dashboard() {
               <NotificationsIcon />
             </Badge>
           </IconButton>
+          <Settings />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -149,9 +142,8 @@ export default function Dashboard() {
       </Drawer>
       <Box
         component="main"
-        //@ts-ignore
         sx={{
-          backgroundColor: (theme: any) =>
+          backgroundColor: (theme) =>
             theme.palette.mode === 'light'
               ? theme.palette.grey[100]
               : theme.palette.grey[900],
@@ -161,32 +153,22 @@ export default function Dashboard() {
         }}
       >
         <div className={classes.appBarSpacer} />
-        {/*
-         // @ts-ignore */}
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
           <Grid container spacing={3}>
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
-              <Paper
-                // @ts-ignore
-                sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 240 }}
-              >
+              <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 240 }}>
                 <Chart />
               </Paper>
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
-              <Paper
-                // @ts-ignore
-                sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 240 }}
-              >
+              <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 240 }}>
                 <Deposits />
               </Paper>
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>
-              {/*
-                 // @ts-ignore */}
               <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                 <Orders />
               </Paper>

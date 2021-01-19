@@ -5,12 +5,12 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Link from '../src/Link';
 import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -28,18 +28,20 @@ export default function Login() {
 
   return (
     <Container maxWidth='sm'>
-      <Box mt={10} display="flex" flexDirection="column" alignItems="center">
+      <Box sx={{ mt: 10, mb: 4, display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        {isFirebaseClientReady ? <FirebaseAuth fpc={firebaseClient} /> : <CircularProgress />}
+      </Box>
+      {isFirebaseClientReady ? <FirebaseAuth fpc={firebaseClient} /> : <CircularProgress />}
+      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Link href="/">
           <Button color="primary"> Go back </Button>
         </Link>
       </Box>
-    </Container>
+    </Container >
   );
 }

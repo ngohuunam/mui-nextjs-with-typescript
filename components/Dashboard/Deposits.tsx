@@ -14,8 +14,6 @@ export default function Deposits() {
       <Typography component="p" variant="h4">
         $3,024.00
       </Typography>
-      {/*
-      // @ts-ignore */}
       <Typography color="textSecondary" sx={{ flex: 1 }}>
         on 15 March, 2019
       </Typography>
