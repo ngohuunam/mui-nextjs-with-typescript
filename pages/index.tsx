@@ -20,7 +20,7 @@ export default function Index() {
   const classes = useStyles();
   return (
     <div className={classes.mainWrap}>
-      <Container>
+      <Box>
         <Header />
         <Container maxWidth='sm'>
           <Box>
@@ -33,7 +33,7 @@ export default function Index() {
             <Copyright />
           </Box>
         </Container>
-      </Container>
+      </Box>
     </div>
   );
 }

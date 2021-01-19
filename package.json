@@ -9,6 +9,7 @@
     "@emotion/styled": "^11.0.0",
     "@material-ui/core": "next",
     "@material-ui/icons": "next",
+    "@material-ui/lab": "next",
     "@material-ui/system": "next",
     "clsx": "^1.1.1",
     "firebase": "^8.2.3",

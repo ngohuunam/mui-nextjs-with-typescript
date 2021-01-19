@@ -1,10 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 const headerStyles = makeStyles((theme: Theme) => ({
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
-  },
   '@keyframes slideRight': {
     from: {
       opacity: 0,
@@ -24,10 +20,12 @@ const headerStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.text.primary,
     background: theme.palette.background.paper,
     boxShadow: 'none',
+    zIndex: 1600,
     transition: 'all 0.3s ease',
     '& > *': {
       [theme.breakpoints.down('md')]: {
         paddingLeft: 0,
+        paddingRight: 0
       },
     },
     '&$fixed': {
@@ -43,10 +41,6 @@ const headerStyles = makeStyles((theme: Theme) => ({
       '& $vDivider': {
         minHeight: theme.spacing(3),
       },
-    },
-    '&$openDrawer': {
-      zIndex: 1600,
-      boxShadow: 'none',
     },
   },
   headerContent: {

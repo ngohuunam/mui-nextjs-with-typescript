@@ -18,7 +18,9 @@ function Settings() {
   const { user, firebaseClient } = useAuth();
   const router = useRouter();
   const [ctn, setCtn] = useState<HTMLElement | null>(null);
+
   const classes = useStyles();
+
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [backdropOpen, setbackdropOpen] = React.useState(false);
 
@@ -54,7 +56,7 @@ function Settings() {
   const id = open ? 'simple-popover' : undefined;
   return (
     <div className={classes.setting}>
-      <Backdrop className={classes.backdrop} style={{ zIndex: 2000 }} open={backdropOpen} onClick={() => setbackdropOpen(false)}>
+      <Backdrop style={{ zIndex: 2000, color: '#fff' }} open={backdropOpen} onClick={() => setbackdropOpen(false)}>
         <CircularProgress color="inherit" />
       </Backdrop>
       <IconButton aria-describedby={id} aria-label='Settings' onClick={handleClick} className={clsx(classes.icon, open ? classes.active : '')}>

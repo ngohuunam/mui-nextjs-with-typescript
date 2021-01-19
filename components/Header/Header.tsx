@@ -59,7 +59,7 @@ function Header() {
   return (
     <Fragment>
       {isMobile && <MobileMenu open={openDrawer} toggleDrawer={handleOpenDrawer} />}
-      <AppBar position='relative' id='header' className={clsx(classes.header, fixed && classes.fixed, openDrawer && classes.openDrawer)}>
+      <AppBar position='relative' id='header' className={clsx(classes.header, fixed && classes.fixed)}>
         <Container>
           <div className={classes.headerContent}>
             <nav className={classes.navMenu}>

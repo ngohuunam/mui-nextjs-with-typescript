@@ -1,14 +1,14 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import MuiLink from '@material-ui/core/Link';
+import Link from './Link'
 
 export default function Copyright(props: any) {
   return (
     <Typography variant="body2" color="textSecondary" align="center" {...props}>
       {'Copyright © '}
-      <MuiLink color="inherit" href="/">
+      <Link color="inherit" href="/">
         Main page
-      </MuiLink>{' '}
+      </Link>{' '}
       {new Date().getFullYear()}.
     </Typography>
   );
