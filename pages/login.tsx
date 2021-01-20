@@ -43,7 +43,7 @@ export default function Login() {
       <Box sx={{ mt: 10, mb: 4, display: "flex", flexDirection: "column", alignItems: "center" }}>
         {/*
         // @ts-ignore */}
-        <Avatar className={classes.avatar} src={user?.photoUR} >
+        <Avatar className={classes.avatar} src={user?.photoURL} >
           {!user && <LockOutlinedIcon />}
         </Avatar>
         <Typography component="h1" variant={user ? "body1" : "h5"}>
@@ -58,7 +58,7 @@ export default function Login() {
       {!isPendingRedirect &&
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <Link href="/">
-            <Button color="primary"> Go back </Button>
+            <Button color="primary"> Main page </Button>
           </Link>
         </Box>
       }

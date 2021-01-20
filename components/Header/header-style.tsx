@@ -20,7 +20,7 @@ const headerStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.text.primary,
     background: theme.palette.background.paper,
     boxShadow: 'none',
-    zIndex: 1600,
+    // zIndex: 1600,
     transition: 'all 0.3s ease',
     '& > *': {
       [theme.breakpoints.down('md')]: {
@@ -42,6 +42,10 @@ const headerStyles = makeStyles((theme: Theme) => ({
         minHeight: theme.spacing(3),
       },
     },
+    '&$openDrawer': {
+      zIndex: 1600,
+      boxShadow: 'none',
+    }
   },
   headerContent: {
     display: 'flex',

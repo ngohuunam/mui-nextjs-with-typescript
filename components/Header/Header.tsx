@@ -44,7 +44,7 @@ function Header() {
   const classes = useStyles();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
   const [menuList] = useState([
     createData(navMenu[0], '#' + navMenu[0]),
     createData(navMenu[1], '#' + navMenu[1]),
@@ -59,7 +59,7 @@ function Header() {
   return (
     <Fragment>
       {isMobile && <MobileMenu open={openDrawer} toggleDrawer={handleOpenDrawer} />}
-      <AppBar position='relative' id='header' className={clsx(classes.header, fixed && classes.fixed)}>
+      <AppBar position='relative' id='header' className={clsx(classes.header, fixed && classes.fixed, openDrawer && classes.openDrawer)}>
         <Container>
           <div className={classes.headerContent}>
             <nav className={classes.navMenu}>

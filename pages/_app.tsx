@@ -17,10 +17,10 @@ import MySnackbars from '../components/Feedback/MySnackbars'
 export const cache = createCache({ key: 'css', prepend: true });
 
 const pageName = {
-  '/': 'Main Page',
-  '/login': 'Login page',
-  '/profile': 'Dashboard page',
-  '/about': 'About page'
+  '/': 'Main',
+  '/login': 'Login',
+  '/profile': 'Dashboard',
+  '/about': 'About'
 }
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -28,11 +28,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const [pathName, setPathName] = useState('/');
   const router = useRouter()
   useEffect(() => {
-    const start = () => {
-      const path = router.pathname
-      // @ts-ignore
-      setPathName(pageName[path])
-      setLoading(true);
+    const start = (url: any) => {
+      const currentPath = router.pathname
+      if (url !== currentPath) {
+        // @ts-ignore
+        setPathName(pageName[url])
+        setLoading(true);
+      }
     };
     const end = () => {
       setLoading(false);
