@@ -32,7 +32,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@emotion/babel-plugin": "^11.1.2",
-    "@types/node": "^14.14.21",
+    "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-scrollspy": "^3.3.3",

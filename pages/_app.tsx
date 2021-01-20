@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -9,37 +9,45 @@ import theme from '../src/theme';
 import '../vendors/hamburger-menu.css';
 // import Layout from "../components/layout";
 import { AuthProvider } from "../provider/auth/auth-provider-hook";
-import { Router } from 'next/router';
+import { useRouter } from 'next/router';
 // import Backdrop from '@material-ui/core/Backdrop';
 // import CircularProgress from '@material-ui/core/CircularProgress';
-import MySnackbars from '../components/Feedback/MySnackbar'
+import MySnackbars from '../components/Feedback/MySnackbars'
 
 export const cache = createCache({ key: 'css', prepend: true });
 
-
+const pageName = {
+  '/': 'Main Page',
+  '/login': 'Login page',
+  '/profile': 'Dashboard page',
+  '/about': 'About page'
+}
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const [loading, setLoading] = React.useState(false);
-  React.useEffect(() => {
+  const [loading, setLoading] = useState(false);
+  const [pathName, setPathName] = useState('/');
+  const router = useRouter()
+  useEffect(() => {
     const start = () => {
-      console.log("start");
+      const path = router.pathname
+      // @ts-ignore
+      setPathName(pageName[path])
       setLoading(true);
     };
     const end = () => {
-      console.log("findished");
       setLoading(false);
     };
-    Router.events.on("routeChangeStart", start);
-    Router.events.on("routeChangeComplete", end);
-    Router.events.on("routeChangeError", end);
+    router.events.on("routeChangeStart", start);
+    router.events.on("routeChangeComplete", end);
+    router.events.on("routeChangeError", end);
     return () => {
-      Router.events.off("routeChangeStart", start);
-      Router.events.off("routeChangeComplete", end);
-      Router.events.off("routeChangeError", end);
+      router.events.off("routeChangeStart", start);
+      router.events.off("routeChangeComplete", end);
+      router.events.off("routeChangeError", end);
     };
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
@@ -57,7 +65,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <AuthProvider>
-          <MySnackbars open={loading} />
+          <MySnackbars open={loading} message={`Navigating to ${pathName} page, please wait...`} />
           {/* <Backdrop style={{ zIndex: 2000, color: '#fff' }} open={loading}>
             <CircularProgress color="inherit" />
           </Backdrop> */}

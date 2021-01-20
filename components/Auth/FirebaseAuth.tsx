@@ -1,12 +1,20 @@
+import { useState } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from "firebase/app";
-import nookies from "nookies";
-import { useRouter } from "next/router";
+import { Props } from 'react-firebaseui';
+import MySnackbars from '../Feedback/MySnackbars';
+import { useAuth } from '../../provider/auth/auth-provider-hook';
 
-const FirebaseAuth = ({ fpc }: { fpc: typeof firebase }) => {
-  const router = useRouter();
+const FirebaseAuth = ({ fpc, successed, redirect }: { fpc: typeof firebase, successed: any, redirect: any }) => {
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
 
-  const firebaseAuthConfig = {
+  const handlePendingRedirect = (isPending: boolean) => {
+    redirect(isPending)
+    setLoading(isPending)
+  }
+
+  const firebaseAuthConfig: Props["uiConfig"] = {
     // signInFlow: "popup",
     signInFlow: 'redirect',
     // Auth providers
@@ -30,11 +38,8 @@ const FirebaseAuth = ({ fpc }: { fpc: typeof firebase }) => {
     credentialHelper: 'none',
     callbacks: {
       signInSuccessWithAuthResult: ({ user }: { user: firebase.User }) => {
-        user.getIdToken().then(token => {
-          nookies.destroy(null, "token");
-          nookies.set(null, "token", token, {})
-          router.push('/profile');
-        });
+        successed(user)
+        setLoading(false)
         return false;
       },
     },
@@ -43,7 +48,8 @@ const FirebaseAuth = ({ fpc }: { fpc: typeof firebase }) => {
 
   return (
     <>
-      <StyledFirebaseAuth uiConfig={firebaseAuthConfig} firebaseAuth={fbAuth} />
+      <MySnackbars open={loading} message={`Logging in${user ? ' to another acc' : ''}, please wait...`} />
+      <StyledFirebaseAuth uiCallback={(ui) => handlePendingRedirect(ui.isPendingRedirect())} uiConfig={firebaseAuthConfig} firebaseAuth={fbAuth} />
     </>
   );
 };
