@@ -1,47 +1,47 @@
-export interface defaultUserITF {
-  name: string | undefined | null;
-  displayName: string | undefined | null;
-  email: string | undefined | null;
-  emailVerified: string | undefined | null;
-  phoneNumber: number | string | undefined | null;
-  photoURL: string | undefined | null;
-  providerId: string | undefined | null;
-  uid: string | undefined | null;
-  active: boolean;
-  banned: boolean;
-  birthDay: number | string | undefined | null;
-  thuongTru: string | undefined | null;
-  cccd: string | undefined | null;
-  phong: string | undefined | null;
-  hoSo: string | undefined | null;
-  loaiXe: string | undefined | null;
-  bienSo: string | undefined | null;
-  xeTret: boolean;
-  vanTay: string | undefined | null;
+export interface User {
+  id: string;
+  ten: string;
+  displayName: string;
+  email: string;
+  emailVerified: boolean;
+  phoneNumber: string;
+  photoURL: string;
+  providerId: string;
+  uid: string;
+  ngaySinh: number | string;
+  thuongTru: string;
+  cccd: string;
+  phong: string;
+  hoSo: string;
+  loaiXe: string;
+  bienSo: string;
+  choDeXe: string;
+  vanTay: string;
   createdAt: number;
   lastEdit: number;
+  status: string;
 }
 
-export const defaultUser: defaultUserITF = {
-  name: '',
+export const defaultUser: User = {
+  id: '',
+  ten: '',
   displayName: '',
   email: '',
-  emailVerified: '',
+  emailVerified: false,
   phoneNumber: '',
   photoURL: '',
   providerId: '',
   uid: '',
-  active: false,
-  banned: false,
-  birthDay: '',
+  ngaySinh: '',
   thuongTru: '',
   cccd: '',
   phong: '',
   hoSo: '',
   loaiXe: '',
   bienSo: '',
-  xeTret: false,
+  choDeXe: '',
   vanTay: '',
   createdAt: 0,
   lastEdit: 0,
+  status: 'new',
 };
