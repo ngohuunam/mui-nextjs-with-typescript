@@ -25,11 +25,11 @@ export const newUserToFS = functions
       .get()
       .then((doc) => {
         const defUser = doc.data();
-        const { providerData, email, emailVerified, phoneNumber } = user;
-        const providerDataToJson = JSON.parse(JSON.stringify(providerData[0]));
+        const { providerData: providerDatas, email, emailVerified, phoneNumber } = user;
+        const providerData = providerDatas[0].toJSON();
         const id = email || phoneNumber;
-        const data = { ...defUser, ...{ emailVerified, id }, ...providerDataToJson };
-        data.createdAt = admin.firestore.Timestamp.now().toMillis();
+        const data = { ...defUser as any, ...{ emailVerified, id }, ...{ providerData } };
+        data.log.tao = { label: 'Đăng ký', ts: admin.firestore.Timestamp.now().toMillis() };
         return userCollectionRef // @ts-ignore
           .doc(id)
           .set(data)
@@ -62,12 +62,10 @@ export const listenToUserDataUpdate = functions
 
     // We'll only update if the name has changed.
     // This is crucial to prevent infinite loops.
-    if (Object.keys(data).every((p) => data[p] === previousData[p])) {
-      return null;
-    }
+    if (data.rev === previousData.rev) return null;
 
     if (data.phong !== previousData.phong) {
-      const roomRef = admin.firestore().collection('phanHuyIch').doc(data.phong);
+      const roomRef = admin.firestore().collection(data.nha).doc(data.phong);
       return roomRef
         .get()
         .then((docSnap) => {

@@ -14,6 +14,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "crc": "^3.8.0",
     "firebase-admin": "^9.4.2",
     "firebase-functions": "^3.13.1"
   },
